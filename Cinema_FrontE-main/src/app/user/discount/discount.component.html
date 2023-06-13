@@ -1,0 +1,30 @@
+<hr class="container" />
+<div class="my-4">
+    <h3 class="mt-4 container">Tin Khuyến Mãi</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 discount" *ngFor="let new of NewDto | paginate: { itemsPerPage: 2, currentPage: p }">
+                <div class="card mt-4">
+                    <a href="#">
+                        <img 
+                            src="{{new.image}}"
+                            alt="Avatar"
+                            class="image position-relative"
+                            style="width: 100%"
+                        />
+                        <div class="middle d-none">
+                            <button class="position-absolute bottom-0 start-50 translate-middle btn btn-lg btn-secondary">Chi Tiết</button>
+                        </div>
+                    </a>
+                </div>
+               
+            </div>
+            <pagination-controls
+            nextLabel=""
+            previousLabel=""
+            (pageChange)="p = $event"
+            class="text-center mt-4 "
+        ></pagination-controls>
+        </div>
+    </div>
+</div>

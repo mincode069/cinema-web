@@ -1,0 +1,35 @@
+<div class="my-4 position-relative">
+    <h3 class="mt-4 container">Phim Sắp Chiếu</h3>
+    <a routerLink="/moviesNow" class="position-absolute me-5 text-decoration-none text-dark fs-4" style="right: 0; top:0px">Phim Đang Chiếu</a>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-lg-3" *ngFor="let movie of movieComing | paginate: { itemsPerPage: 8, currentPage: p }">
+                <div class="card mt-4 movies" >
+                    <a>
+                        <img width="300px" height="400px" src="{{movie.image}}" alt="Avatar" class="image position-relative" style="width: 100%" />
+                    </a>
+                    <div class="middle d-none">
+                        <a
+                            href="/detailFilm/{{ movie.movieId }}"
+                            class="position-absolute bottom-0 start-50 translate-middle btn btn-lg btn-secondary"
+                           
+                            (click)="detail(movie.movieId)"
+                            type="submit"
+                            id="btn-submit-formDetail"
+                        >
+                            Chi tiết
+                        </a>
+                    </div>
+                    <!-- dialog đặt vé -->
+                </div>
+                <app-modal-order ></app-modal-order>
+
+                <div class="mt-2">{{movie.movieName}}</div>
+                <!-- <div class="fw-lighter">GIRL FROM THE PAST</div> -->
+            </div>
+            <pagination-controls nextLabel="" previousLabel="" (pageChange)="p = $event" class="text-center mt-4"></pagination-controls>
+        </div>
+    </div>
+</div>
+<!-- cach lay stt let i= index   -->

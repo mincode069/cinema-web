@@ -1,0 +1,48 @@
+<div class="col-xl-5 col-lg-5 col-md-5 container">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+                <div class="">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Đăng nhập Admin</h1>
+                        </div>
+                        <div class="user">
+                            <div class="form-group">
+                                <input
+                                    (blur)="validate()"
+                                    type="email"
+                                    [(ngModel)]="userdto.email"
+                                    class="form-control form-control-user"
+                                    id="exampleInputEmail"
+                                    aria-describedby="emailHelp"
+                                    placeholder="Enter Email Address..."
+                                />
+                                <span class="text-danger form-text" *ngIf="notEmail">Email không phù hợp</span>
+                            </div>
+                            <div class="form-group">
+                                <input
+                                    (blur)="validate()"
+                                    type="{{isShow?'text':'password'}}"
+                                    [(ngModel)]="userdto.password"
+                                    class="form-control form-control-user"
+                                    id="exampleInputPassword"
+                                    placeholder="Password"
+                                />
+                                <span class="text-danger form-text" *ngIf="wrongPass">Mật khẩu không được để trống!</span>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox small">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" />
+                                    <label class="custom-control-label" (click)="show()" for="customCheck">Hiện mật khẩu</label>
+                                </div>
+                            </div>
+                            <span style="color: red; font-size: 12px">{{ messageError }}</span>
+                            <a class="btn btn-primary btn-user btn-block" (click)="signin()"> Đăng nhập </a>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

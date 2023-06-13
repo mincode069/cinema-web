@@ -1,0 +1,32 @@
+<div class="container py-2 my-5 bg-white rounded-start rounded-end">
+  <h1 class="mb-5">Vé Của Tôi</h1>
+  <table class="table">
+      <thead>
+          <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Mã nhận vé</th>
+              <th scope="col">Phim</th>
+              <th scope="col">Rạp</th>
+              <th scope="col">Phòng chiếu</th>
+              <th scope="col">Ngày Chiếu</th>
+              <th scope="col">Giờ Chiếu</th>
+              <th scope="col">Tổng Tiền</th>
+          </tr>
+      </thead>
+<div>
+
+</div>
+      <tbody>
+          <tr *ngFor="let b of bill; let i = index">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{b.billId}}</td>
+              <td>{{b.movieName}}</td>
+              <td>{{b.cinemaName}}</td>
+              <td>{{b.roomName}}</td>
+              <td>{{b.showDate|date:'dd/MM/YYYY'}}</td>
+              <td>{{b.startTime}}</td>
+              <td>{{b.totalAmount}}</td>
+          </tr>
+      </tbody>
+  </table>
+</div>

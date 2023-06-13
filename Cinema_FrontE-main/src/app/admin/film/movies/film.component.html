@@ -1,0 +1,184 @@
+<div class="me-5 container px-5">
+    <h1 class="h3 my-4 text-gray-800">Danh Sách Phim</h1>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-secondary">Phim</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="d-flex justify-content-between my-2 mb-4">
+                        <div>
+                            <div class="dataTables_length" id="dataTable_length" cla>
+                                <a type="button" class="btn btn-secondary com-sm-6" href="/admin/createfilm">Thêm Phim Mới</a>
+                                <a type="button" class="btn btn-secondary ms-2" href="javascript:window.top.location.reload(true)"
+                                    ><i class="fas fa-sync-alt"></i
+                                ></a>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <select class="form-select" [(ngModel)]="items" style="width: 200px" aria-label="Default select example">
+                                <option value="5">5 Bản ghi</option>
+                                <option value="10">10 bản ghi</option>
+                                <option value="20">20 bản ghi</option>
+                                <option value="50">50 bản ghi</option>
+                            </select>
+                            <div class="input-group rounded">
+                                <input
+                                    type="search"
+                                    class="form-control rounded"
+                                    placeholder="Tìm Kiếm"
+                                    [(ngModel)]="search"
+                                    aria-label="Search"
+                                    aria-describedby="search-addon"
+                                />
+                                <span class="input-group-text border-0" id="search-addon">
+                                    <i (click)="getsearch()" class="fas fa-search"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table
+                                class="table table-bordered table-striped mb-5"
+                                id="dataTable"
+                                width="100%"
+                                cellspacing="0"
+                                role="grid"
+                                aria-describedby="dataTable_info"
+                                style="width: 100%"
+                            >
+                                <thead>
+                                    <tr role="row">
+                                        <th
+                                            class="sorting sorting_asc name-col"
+                                            tabindex="0"
+                                            aria-controls="dataTable"
+                                            rowspan="1"
+                                            colspan="1"
+                                            aria-sort="ascending"
+                                            aria-label="Name: activate to sort column descending"
+                                            style="width: 120px"
+                                            (click)="sortByName()"
+                                        >
+                                            Tên Phim
+                                            <i class="fa" [ngClass]="dec ? 'd-none' : ''" [ngClass]="decName ? 'fa-arrow-down' : 'fa-arrow-up'"></i>
+                                        </th>
+                                        <th
+                                            class="sorting"
+                                            tabindex="0"
+                                            aria-controls="dataTable"
+                                            rowspan="1"
+                                            colspan="1"
+                                            aria-label="Position: activate to sort column ascending"
+                                            style="width: 172px"
+                                        >
+                                            Mô Tả
+                                        </th>
+                                        <th
+                                            class="sorting"
+                                            tabindex="0"
+                                            aria-controls="dataTable"
+                                            rowspan="1"
+                                            colspan="1"
+                                            aria-label="Office: activate to sort column ascending"
+                                            style="width: 100px"
+                                        >
+                                            Thể loại
+                                        </th>
+
+                                        <th
+                                            class="sorting"
+                                            tabindex="0"
+                                            aria-controls="dataTable"
+                                            rowspan="1"
+                                            colspan="1"
+                                            aria-label="Start date: activate to sort column ascending"
+                                            style="width: 75px"
+                                        >
+                                            Khởi Chiếu
+                                        </th>
+                                        <th
+                                            class="sorting"
+                                            tabindex="0"
+                                            aria-controls="dataTable"
+                                            rowspan="1"
+                                            colspan="1"
+                                            aria-label="Salary: activate to sort column ascending"
+                                            style="width: 40px"
+                                        >
+                                            Thời Lượng
+                                        </th>
+
+                                        <th style="width: 8px"></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr class="odd" *ngFor="let film of films | paginate: { itemsPerPage: items, currentPage: p }">
+                                        <td style="font-size: 15px">{{ film.movieName }}</td>
+                                        <td>{{ film.movieDescription }}</td>
+                                        <td>
+                                            <span *ngFor="let category of film.categoryMovies">{{ category.categoryMovieName }}, </span>
+                                        </td>
+                                        <td>{{ film.releaseDate | date }}</td>
+                                        <td>{{ film.duration }} phút</td>
+                                        <td class="text-center">
+                                            <a href="/admin/editfilm/{{ film.movieId }}" class="me-2 text-decoration-none text-secondary">
+                                                <i class="fa fa-pen" aria-hidden="true"></i>
+                                            </a>
+                                            <a
+                                                href=""
+                                                class="ms-1 text-danger text-decoration-none"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal"
+                                                ><i class="fa fa-trash" aria-hidden="true"></i
+                                            ></a>
+                                            <div
+                                                class="modal fade"
+                                                id="exampleModal"
+                                                tabindex="-1"
+                                                aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true"
+                                            >
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Xóa Phim</h5>
+                                                            <button
+                                                                type="button"
+                                                                class="btn-close"
+                                                                data-bs-dismiss="modal"
+                                                                aria-label="Close"
+                                                            ></button>
+                                                        </div>
+                                                        <div class="modal-body">Bạn chắc chắn muốn xóa phim này?</div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+
+                                                            <a
+                                                                id="btn-delete-course"
+                                                                type="button"
+                                                                class="btn btn-danger"
+                                                                href="/admin/film"
+                                                                (click)="delete(film.movieId)"
+                                                                >Có</a
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <pagination-controls (pageChange)="p = $event" class="text-center"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

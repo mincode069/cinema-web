@@ -1,0 +1,45 @@
+<div class="me-5 container px-5">
+    <h3>Thêm lịch chiếu</h3>
+
+    <div class="mb-4">
+        <label for="name">Tên phim</label>
+        <select [(ngModel)]="movieId" class="form-select mt-2  w-100" aria-label="Default select example">
+            <option *ngFor="let nameMovie of movieDto" [ngValue]="nameMovie.movieId">{{ nameMovie.movieName }}</option>
+        </select>
+        <span *ngIf="checkNullMovie" class="form-text text-danger">Vui lòng chọn trường này!</span>
+    </div>
+    <div class="mb-4">
+        <label for="name">Tên rạp</label>
+        <select (change)="getRoom()" [(ngModel)]="cinemaId" class="form-select mt-2  w-100" aria-label="Default select example">
+            <option *ngFor="let cinemaName of cinemadto" [ngValue]="cinemaName.cinemaId">{{ cinemaName.cinemaName }}</option>
+        </select>
+        <span *ngIf="checkNullCinema" class="form-text text-danger">Vui lòng chọn trường này!</span>
+    </div>
+    <div>
+        <label for="name">Tên Phòng</label>
+        <select [(ngModel)]="roomId" class="form-select mt-2  w-100" aria-label="Default select example">
+            <option *ngFor="let roomName of roomdto" [ngValue]="roomName.roomId">{{ roomName.roomName }}</option>
+        </select>
+        <span *ngIf="checkNullRoom" class="form-text text-danger">Vui lòng chọn trường này!</span>
+    </div>
+    <div class="my-4">
+        <label for="name">Ngày chiếu</label>
+        <input
+            type="date"
+            [ngModel]="date | date: 'yyyy-MM-dd'"
+            (ngModelChange)="date = $event"
+            class="form-select"
+            name="date"
+        />
+        <span *ngIf="checkDate" class="text-danger">Ngày phải lớn hơn {{ today | date: 'yyyy-MM-dd' }}</span>
+    </div>
+
+    <div>
+        <label for="name">Ca Chiếu</label>
+        <select [(ngModel)]="shiftId" class="form-select mt-2  w-100" aria-label="Default select example">
+            <option *ngFor="let shift of shiftDto" [ngValue]="shift.shiftId">Bắt đầu từ {{ shift.startTime }} đến {{ shift.endTime }}</option>
+        </select>
+        <span *ngIf="checkNullShift" class="form-text text-danger">Vui lòng chọn trường này!</span>
+    </div>
+    <a type="submit" class="btn btn-primary mt-4" (click)="addShowtime()" href="/admin/list-showtime">Thêm</a>
+</div>

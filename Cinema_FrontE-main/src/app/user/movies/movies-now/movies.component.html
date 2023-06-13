@@ -1,0 +1,47 @@
+<div class="my-4 position-relative">
+    <h3 class="mt-4 container">Phim Đang Chiếu</h3>
+    <a routerLink="/moviesComing" *ngIf="isShow" class="position-absolute me-5 text-decoration-none text-dark fs-4" style="right: 0; top: 0px"
+        >Phim Sắp Chiếu</a
+    >
+    <hr class="container" />
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-3" *ngFor="let movie of movieShowing | paginate: { itemsPerPage: item, currentPage: p }">
+                <div class="card mt-4 movies">
+                    <a>
+                        <img width="100%" height="100%" src="{{ movie.image }}" alt="Avatar" class="image position-relative" style="width: 100%" />
+                    </a>
+                    <div class="middle d-none gap-1">
+                        <a
+                            class="position-absolute btn btn-lg btn-secondary btn-order"
+                            data-bs-target="#modalOrder"
+                            style="bottom: 40px; right: 16%"
+                            (click)="child.modalId = movie.movieId"
+                        >
+                            Đặt vé
+                        </a>
+                        <a
+                            href="/detailFilm/{{ movie.movieId }}"
+                            class="position-absolute btn btn-lg btn-secondary"
+                            style="bottom: 40px; left: 16%"
+                            (click)="detail(movie.movieId)"
+                            type="submit"
+                            id="btn-submit-formDetail"
+                        >
+                            Chi tiết
+                        </a>
+                    </div>
+                    <!-- dialog đặt vé -->
+                </div>
+
+                <div class="mt-2">{{ movie.movieName }}</div>
+                <!-- <div class="fw-lighter">GIRL FROM THE PAST</div> -->
+            </div>
+
+            <app-modal-order #child></app-modal-order>
+
+            <pagination-controls nextLabel="" previousLabel="" (pageChange)="p = $event" class="text-center mt-4"></pagination-controls>
+        </div>
+    </div>
+</div>
+<!-- cach lay stt let i= index   -->

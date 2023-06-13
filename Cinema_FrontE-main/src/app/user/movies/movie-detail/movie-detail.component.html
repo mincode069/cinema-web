@@ -1,0 +1,27 @@
+
+<div class="container my-4">
+    <h3>Nội Dung Phim</h3>
+    <hr />
+    <div class="row ">
+        <div class="col-md-3 col-sm-12 ">
+            <img width="100%" src="{{detailmoviedto.image}}" alt="" />
+        </div>
+        <div class="col-md-9 col-sm-12" >
+            <div class="container fs-5">
+                <h2>Tên Phim: {{detailmoviedto.movieName}}</h2>
+                <hr />
+                <div class="mb-1">Đạo Diễn:{{detailmoviedto.director}}</div>
+                <div class="my-1" >
+                    Diễn Viên: {{detailmoviedto.actor}}
+                </div>
+                <div class="my-1">Thể Loại: {{listCategorty}}</div>
+                <div class="my-1">Khởi Chiếu: {{fomartReleaseDate(detailmoviedto.releaseDate)}}</div>
+                <div class="my-1">Thời lượng: {{detailmoviedto.duration}} phút</div>
+                <div class="my-1">Ngôn ngữ: Tiếng Anh - Phụ đề Tiếng Việt</div>
+                <button class="mt-4 btn btn-lg btn-secondary" data-bs-toggle="modal"
+                data-bs-target="#modalOrder" *ngIf="detailmoviedto.isShowing">Đặt vé</button>
+            </div>
+            <app-modal-order  #child></app-modal-order>
+        </div>
+    </div>
+</div>

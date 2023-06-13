@@ -1,0 +1,73 @@
+
+<div
+class="modal fade"
+id="modalOrder2"
+data-bs-backdrop="static"
+data-bs-keyboard="false"
+tabindex="-1"
+aria-labelledby="staticBackdropLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Thanh Toán</h5>
+            <a type="button" class="btn-close" href="/" aria-label="Close"></a>
+        </div>
+        <div class="modal-body">
+            <div class="container row">
+
+                <div class="box-2 col-sm-12" *ngFor="let detail of billDto">
+                    <div class="box-inner-2">
+                        <div >
+
+                            <p class="fw-bold mb-3">Chi tiết hóa đơn</p>
+                            <p class="dis mb-3">Hoàn tất giao dịch mua bằng cách cung cấp chi tiết thanh toán của bạn</p>
+                        </div>
+                        <form action="">
+                            <div class="mb-3">
+                                <div class="address">
+                                    <div class="my-3">
+                                        <p class="dis fw-bold mb-2">Mã nhận vé</p>
+                                        <div class="inputWithcheck">
+                                            <input class="form-control" [disabled]="true" type="text" value="{{detail.billId}}" />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column dis">
+                                        <div class="d-flex align-items-center justify-content-between mb-2">
+                                            <p>Tên phim</p>
+                                            <p>{{detail.movieName}}</p>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between mb-2">
+                                            <p>Rạp</p>
+                                            <p>{{detail.cinemaName}}</p>
+                                        </div>
+                                        <div class="d-flex align-items-center  justify-content-between  mb-2">
+                                            <p>Ghế</p>
+                                            <div class="d-flex align-items-center gap-2"><p *ngFor="let seat of detail.listSeat">{{seat.seatName}}</p></div>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between mb-2">
+                                            <p>Giá</p>
+                                            <p>{{detail.listSeat.length}} x {{detail.listSeat[0].price}} VND</p>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between mb-2">
+                                            <p class="fw-bold">Tổng tiền</p>
+                                            <p class="fw-bold">{{detail.totalAmount}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#modalOrder" (click)="reset()">Quay lại</button>
+            <a class="btn btn-primary"  (click)="done()" href="/myTicket">Thanh Toán</a>
+
+        </div>
+    </div>
+
+</div>
+</div>

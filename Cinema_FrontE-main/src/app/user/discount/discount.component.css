@@ -1,0 +1,6 @@
+.discount:hover .middle{
+    display: block !important;
+}
+.discount:hover .image{
+    opacity: 0.5;
+}

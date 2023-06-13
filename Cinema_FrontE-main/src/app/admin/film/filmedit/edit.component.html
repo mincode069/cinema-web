@@ -1,0 +1,52 @@
+<div class="my-4 container px-5 ">
+    <h3>Thêm Phim Mới</h3>
+    <form method="GET" action="admin/film" class="container">
+        <div class="form-group mt-4">
+            <label for="name">Tên Phim</label>
+            <input [(ngModel)]="movieName" type="text" class="form-control" id="name" name="name" />
+        </div>
+        <div class="form-group mt-2">
+            <label for="description">Mô tả</label>
+            <textarea [(ngModel)]="description" type="text" class="form-control" id="description" name="description"></textarea>
+        </div>
+        <div class="form-group mt-2">
+            <label for="videoId" class="mb-2">Thể Loại</label>
+            <div class="d-flex gap-4">
+                <div *ngFor="let category of listCategoryMoviedto">
+                    <div class="form-check">
+                        <input  [value]="category.categoryMovieName"  class="form-check-input" type="checkbox" value="" id="{{category.categoryMovieId}}" />
+                        <label class="form-check-label" for="flexCheckIndeterminate">
+                            {{ category.categoryMovieName }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group mt-4">
+            <label for="releaseDate" class="my-2">Khởi Chiếu</label>
+            <input [ngModel]="releaseDate" type="date" class="form-control" id="releaseDate" name="releaseDate" />
+        </div>
+        <div class="form-group mt-4">
+            <label for="endShowDate" class="my-2">Khởi Chiếu</label>
+            <input [ngModel]="endShowDate" type="date" class="form-control" id="endShowDate" name="releaseDate" />
+        </div>
+        <div class="form-group mt-4">
+            <label for="duration" class="my-2">Thời Lượng</label>
+            <input [(ngModel)]="duration" type="text" class="form-control" id="duration" name="duration" />
+        </div>
+        <div class="form-group mt-4">
+            <label for="image" class="my-2">Ảnh</label>
+            <input [(ngModel)]="image" type="text" class="form-control" id="image" name="image" />
+        </div>
+        <div class="form-group mt-4">
+            <label for="actor" class="my-2">Diễn Viên</label>
+            <input [(ngModel)]="actor" type="text" class="form-control" id="actor" name="actor" />
+        </div>
+        <div class="form-group mt-4">
+            <label for="director" class="my-2">Đạo Diễn</label>
+            <input [(ngModel)]="director" type="text" class="form-control" id="director" name="director" />
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4" (click)="saveMovie()">Thêm</button>
+    </form>
+</div>

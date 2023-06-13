@@ -1,0 +1,6 @@
+.movies:hover .middle{
+    display: block !important;
+}
+.movies:hover .image{
+    opacity: 0.5;
+}

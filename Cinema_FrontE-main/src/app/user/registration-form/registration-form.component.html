@@ -1,0 +1,96 @@
+<div class="container">
+  <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+              <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+              <div class="col-lg-7">
+                  <div class="p-5">
+                      <div class="text-center">
+                          <h1 class="h4 text-gray-900 mb-4">Tạo tài khoản!</h1>
+                      </div>
+
+                      <div class="user">
+                          <div class="form-group">
+                              <input
+                                  (blur)="validate()"
+                                  type="text"
+                                  [(ngModel)]="userdto.fullNamme"
+                                  class="form-control form-control-user"
+                                  id="exampleFirstName"
+                                  placeholder="Họ và tên"
+                              />
+                              <span *ngIf="notName" class="form-text text-danger">Tên không được để trống!</span>
+
+                          </div>
+                          <div class="form-group">
+
+                              <input
+                                  type="email"
+                                  (blur)="validate()"
+                                  [(ngModel)]="userdto.email"
+                                  class="form-control form-control-user"
+                                  id="exampleInputEmail"
+                                  placeholder="Địa chỉ email"
+                              />
+                              <span *ngIf="notEmail" class="form-text text-danger">Email không phù hợp!</span>
+
+                          </div>
+                          <div class="form-group">
+
+                              <input
+                                  type="text"
+                                  (blur)="validate()"
+                                  [(ngModel)]="userdto.phoneNumber"
+                                  class="form-control form-control-user"
+                                  id="exampleInputEmail"
+                                  placeholder="(xxx) xxx-xxxx"
+                              />
+                              <span *ngIf="notPhoneNumber" class="form-text text-danger">Số điện thoại không đúng!</span>
+
+                          </div>
+
+                          <div class="form-group row">
+                              <div class="col-sm-6 mb-3 mb-sm-0">
+                                  <input
+                                      type="password"
+                                      (blur)="validate()"
+                                      [(ngModel)]="userdto.password"
+                                      class="form-control form-control-user"
+                                      id="exampleInputPassword"
+                                      placeholder="Mật khẩu"
+                                  />
+                                  <span *ngIf="wrongPass" class="form-text text-danger">Mật khẩu không được để trống!</span>
+                              </div>
+
+                              <div class="col-sm-6">
+                                  <input
+                                      type="password"
+                                      (blur)="validate()"
+                                      [(ngModel)]="userdto.conFirmPassword"
+                                      class="form-control form-control-user"
+                                      id="exampleRepeatPassword"
+                                      placeholder="Nhập lại mật khẩu"
+                                  />
+                                  <span *ngIf="wrongPassConFirm" class="form-text text-danger">Mật khẩu không khớp!</span>
+                              </div>
+                          </div>
+                          <span style="color: red;font-size: 15px;" *ngIf="IsSuccess===false">Email đã tồn tại</span>
+                          <div (click)="register()">
+                              <button type="submit" class="btn btn-primary btn-user btn-block">Đăng Ký</button>
+                          </div>
+                      </div>
+
+                      <hr />
+                      <!-- <div class="text-center">
+                          <a class="small" href="/forgot">Quên mật khẩu?</a>
+                      </div> -->
+                      <div class="text-center">
+                          <a class="small" href="/signIn">Bạn đã có tài khoản rồi? Đăng nhập!</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

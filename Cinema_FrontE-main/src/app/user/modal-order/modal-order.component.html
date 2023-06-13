@@ -1,0 +1,91 @@
+<div
+    class="modal fade"
+    id="modalOrder"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-1" id="exampleModalLabel">Đặt vé</h5>
+            </div>
+            <div class="modal-body text-dark mx-2">
+                <div class="row mt-4">
+                    <div class="col-sm-6">
+                        <div class="text-dark text-lg-start fs-4 fw-bolder">Chọn Ngày</div>
+                        <div class="mt-2 mb-4 w-100">
+                            <input
+                                type="date"
+                                (change)="getdate()"
+                                [ngModel]="date | date: 'yyyy-MM-dd'"
+                                (ngModelChange)="date = $event"
+                                class="form-select"
+                                name="date"
+                            />
+                        </div>
+
+                        <div class="text-dark text-lg-start fs-4 mt-5 fw-bolder">Chọn Rạp</div>
+                        <select
+                            (click)="getCinema()"
+                            (change)="getShowTime()"
+                            class="form-select mt-2 mb-4 w-100"
+                            aria-label="Default select example"
+                            [(ngModel)]="cinemaId"
+                        >
+                            <option *ngFor="let cinema of cinemaDto" [ngValue]="cinema.cinemaId">{{ cinema.cinemaName }}</option>
+                        </select>
+
+                        <div class="text-dark text-lg-start fs-4 mt-5 fw-bolder">Chọn Giờ</div>
+                        <select
+                            (change)="getSeats()"
+                            class="form-select mt-2 mb-4 w-100"
+                            aria-label="Default select example "
+                            [(ngModel)]="showtimeId"
+                        >
+                            <option *ngFor="let showtime of filterShowTime" [ngValue]="showtime.showTimeId">{{ showtime.startTime }}</option>
+                            <option>{{ noShowTime }}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <img
+                            src="https://patch.com/img/cdn20/users/22889014/20190531/020055/styles/patch_image/public/background-black-board-camera-canvas-chalk-chalkboard-cinema-cinematography-clap-clapboard-clapper-clapperboard-concept-curtai-20190531134258-67181300.jpg"
+                            alt="img"
+                            class="w-100 rounded-start rounded-end"
+                            style="height: 70%; margin-top: 38px"
+                        />
+                    </div>
+                </div>
+                <div class="text-dark text-lg-start my-2 fs-4 fw-bolder">Chọn Ghế</div>
+                <div class="text-center fs-2 text-primary">SCREEN</div>
+                <hr />
+                <div class="row mx-2 mt-4">
+                    <button
+                        (click)="select(seat.seatId)"
+                        [ngClass]="seat.isSelected ? 'btn-secondary' : 'btn-outline-secondary'"
+                        *ngFor="let seat of seatsDto"
+                        [disabled]="seat.canSelected === false"
+                        class="col-sm-1 btn-ticket btn m-1 btn"
+                    >
+                        {{ seat.seatName }}
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a (click)="close()" type="button" href="/" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</a>
+                <button
+                    (click)="addBill()"
+                    (click)="payment.billDto = billDto"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalOrder2"
+                    class="btn btn-primary"
+                >
+                    Xác nhận
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-payment #payment></app-payment>
